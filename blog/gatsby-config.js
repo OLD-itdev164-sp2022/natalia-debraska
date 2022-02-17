@@ -3,15 +3,23 @@ module.exports = {
     title: `Gatsby Blog`,
     description: `ITDEV-164 Gatsby Blog.`,
     author: `Natalia DeBraska`,
+    siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
     contact: {
       name: `Natalia DeBraska`,
       company: `Blogs Inc.`,
       address: `PO Box 1234`
-    }
+    },
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
+    {
+      resolve: `gatsby-source-contentful`,
+      options: {
+        spaceId: `y7qc9mya0ju6`,
+        accessToken: `e-CdMMowhvUpRgQdd9DExkg3njr_SMUjQmZOpqW1pio`,
+      }
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
