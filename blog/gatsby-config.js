@@ -1,14 +1,18 @@
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`
+});
+
 module.exports = {
   siteMetadata: {
     title: `Gatsby Blog`,
     description: `ITDEV-164 Gatsby Blog.`,
     author: `Natalia DeBraska`,
-    siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
+    //siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
     contact: {
       name: `Natalia DeBraska`,
       company: `Blogs Inc.`,
       address: `PO Box 1234`
-    },
+    }
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -16,8 +20,8 @@ module.exports = {
     {
       resolve: `gatsby-source-contentful`,
       options: {
-        spaceId: `y7qc9mya0ju6`,
-        accessToken: `e-CdMMowhvUpRgQdd9DExkg3njr_SMUjQmZOpqW1pio`,
+        spaceId: `${process.env.SPACE_ID}`,
+        accessToken: `${process.env.ACCESS_TOKEN}`,
       }
     },
     {
@@ -27,6 +31,7 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    `gatsby-transformer-remark`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {

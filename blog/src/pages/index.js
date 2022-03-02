@@ -1,5 +1,6 @@
 import * as React from "react"
 import { graphql, Link } from "gatsby"
+import { GatsbyImage } from "gatsby-plugin-image"
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
@@ -9,9 +10,18 @@ const IndexPage = ({ data }) => (
     <Seo title="Home" />
     <ul>
     {
-      data.allContentfulBlogPost.edges.map(edges => (
+      data.allContentfulBlogPost.edges.map(edge => (
         <li>
-          <Link to={edges.node.slug} key={edges.node.id}>{edges.node.title}</Link>
+          <Link to={edge.node.slug} key={edge.node.id}>{edge.node.title}</Link>
+          <div>
+            <GatsbyImage
+              image={edge.node.heroImage.gatsbyImageData}
+              alt="test"
+              />
+          </div>
+          <div>
+            {edge.node.body.childMarkdownRemark.excerpt}
+          </div>
         </li>
       ))
     }
@@ -22,15 +32,23 @@ const IndexPage = ({ data }) => (
 export default IndexPage
 
 export const query = graphql`
-{
-	allContentfulBlogPost {
+query MyQuery {
+  allContentfulBlogPost {
     edges {
-			node {
+      node {
         id
         title
         slug
+        body {
+          childMarkdownRemark {
+            excerpt
+          }
+        }
+        heroImage {
+          gatsbyImageData(layout: CONSTRAINED, placeholder: BLURRED, width: 300)
+        }
       }
-    }    
-	}
+    }
+  }
 }
 `
