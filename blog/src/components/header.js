@@ -30,9 +30,9 @@ const Header = ({ siteTitle }) => (
   <Outer>
     <Inner>
       <H1>
-        <styledLink to="/">
+        <StyledLink to="/">
           {siteTitle}
-        </styledLink>
+        </StyledLink>
       </H1>
     </Inner>
   </Outer>
@@ -46,4 +46,4 @@ Header.defaultProps = {
   siteTitle: ``,
 }
 
-export default Header
+export default Header 
