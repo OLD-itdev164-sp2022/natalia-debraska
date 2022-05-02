@@ -9,7 +9,7 @@ const BlogPost = ({ data }) => {
 
     return (
         <Layout>
-            <Image src={heroImage.fluid.src} />
+            <Image src={heroImage.gatsbyImageData} />
             <H1>{title}</H1>
             <div dangerouslySetInnerHTML={{__html: body.childMarkdownRemark.html}}></div>
         </Layout>
@@ -29,9 +29,12 @@ export const pageQuery = graphql`
                 }
             }
             heroImage {
-                fluid(maxWidth: 960) {
-                    src
-                }
+                gatsbyImageData(
+                    layout: CONSTRAINED
+                    placeholder: BLURRED
+                    width: 300
+                )
+            
             }
         }
     }
