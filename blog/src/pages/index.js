@@ -1,6 +1,7 @@
-import React from "react"
-import { Link } from "gatsby"
+import * as React from "react"
+import { graphql, Link } from "gatsby"
 import styled from 'styled-components'
+import { GatsbyImage } from "gatsby-plugin-image"
 import { Box, Card, Image, Heading } from "rebass"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -22,7 +23,10 @@ const IndexPage = ({ data }) => (
       data.allContentfulBlogPost.edges.map(edge => (
         <Card key={edge.node.id} width={256} p={3}>
           <Link to={edge.node.slug}>
-            <Image src={edge.node.heroImage.fluid.src} alt="hero image" />
+            <GatsbyImage
+              image={edge.node.heroImage.gatsbyImageData}
+              alt="test"
+              />
           </Link>
           <Heading>{edge.node.title}</Heading>
           <div>{edge.node.body.childMarkdownRemark.excerpt}</div>
@@ -36,7 +40,7 @@ const IndexPage = ({ data }) => (
 export default IndexPage
 
 export const query = graphql`
-query MyQuery {
+{
   allContentfulBlogPost {
     edges {
       node {
